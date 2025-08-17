@@ -8,7 +8,7 @@ import java.util.List;
 public class DriverDAO {
 
     public static boolean addDriver(String driverName, int skillLevel, int experienceYears,
-                                    long rentalPrice, boolean available, Date joinedDate) {
+                                    long rentalPrice, String nationality, Date joinedDate) {
         try (Connection conn = DBManager.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(
                     "INSERT INTO drivers (driver_name, skill_level, joined_date, rental_price, nationality, team_id) " +
@@ -17,7 +17,7 @@ public class DriverDAO {
             ps.setInt(2, skillLevel);
             ps.setDate(3, joinedDate);
             ps.setLong(4, rentalPrice);
-            ps.setString(5, available ? "Available" : "Unavailable");
+            ps.setString(5, nationality");
             return ps.executeUpdate() == 1;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -129,3 +129,4 @@ public class DriverDAO {
         return false;
     }
 }
+
