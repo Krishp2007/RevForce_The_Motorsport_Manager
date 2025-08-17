@@ -295,9 +295,7 @@ public class Main {
             catch (NumberFormatException e) { System.out.println("Invalid input."); }
         }
 
-        boolean available = true; // Assuming new driver is available by default
-
-        if (DriverDAO.addDriver(name, skillLevel, 0, rentalPrice, available, Date.valueOf(java.time.LocalDate.now())))
+        if (DriverDAO.addDriver(name, skillLevel, 0, rentalPrice, nationality, Date.valueOf(java.time.LocalDate.now())))
             System.out.println("Driver added successfully.");
         else
             System.out.println("Failed to add driver.");
@@ -945,3 +943,4 @@ public class Main {
         System.out.println();
     }
 }
+
