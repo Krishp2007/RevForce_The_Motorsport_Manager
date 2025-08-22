@@ -20,17 +20,19 @@ public class Main {
         boolean running = true;
 
         while (running) {
-            System.out.println("\n" + "🏁".repeat(12));
-            System.out.println("🏁 REVFORCE MOTORSPORTS 🏁");
-            System.out.println("🏁".repeat(12));
-
-            System.out.println("1. 🔐 Login as Admin");
-            System.out.println("2. 👤 Login as User");
-            System.out.println("3. ✨ Create New Account");
-            System.out.println("4. 👉 Continue As Viewer");
-            System.out.println("5. 🚪 Exit");
-
-            System.out.print("Choose option: ");
+            System.out.println("\n" + "🏁".repeat(36));
+            System.out.println("                     🏁      REVFORCE MOTORSPORTS      🏁");
+            System.out.println("🏁".repeat(36));
+            System.out.println("╔══════════════════════════════════════════════════════════════════════════════╗");
+            System.out.println("║                              🚀 MAIN MENU 🚀                                 ║");
+            System.out.println("╠══════════════════════════════════════════════════════════════════════════════╣");
+            System.out.println("║  🔐 1. Login as Admin                                                        ║");
+            System.out.println("║  🏎️ 2. Login as Team                                                         ║");
+            System.out.println("║  👀 3. Continue as Viewer                                                    ║");
+            System.out.println("║  ✨ 4. Create New Account                                                    ║");
+            System.out.println("║  🚪 5. Exit                                                                  ║");
+            System.out.println("╚══════════════════════════════════════════════════════════════════════════════╝");
+            System.out.print("🎯 Choose option: ");
             String option = sc.nextLine();
 
             switch (option) {
@@ -46,11 +48,11 @@ public class Main {
                     break;
 
                 case "3":
-                    createAccount(sc);
+                    viewerMenu(sc);
                     break;
 
                 case "4":
-                    viewerMenu(sc);
+                    createAccount(sc);
                     break;
 
                 case "5":
@@ -71,17 +73,23 @@ public class Main {
     private static void viewerMenu(Scanner sc) {
         boolean running = true;
         while (running) {
-            System.out.println("\n" + "=".repeat(40));
-            System.out.println("🎮  RACE VIEWER MENU  🎮");
-            System.out.println("=".repeat(40));
-            System.out.println("1. \uD83D\uDDD3\uFE0F View Upcoming Races️");
-            System.out.println("2. 🏁 View Past Races Results");
-            System.out.println("3. 🔍 Search Team By Username");
-            System.out.println("4. 🚪 Exit");
-            System.out.println("=".repeat(40));
-            System.out.print("👉 Choose Option: ");
+            System.out.println("\n" + "=".repeat(80));
+            System.out.println("                              👀 VIEWER DASHBOARD 👀");
+            System.out.println("=".repeat(80));
+            System.out.println("╔══════════════════════════════════════════════════════════════════════════════╗");
+            System.out.println("║                           👁️ VIEWER DASHBOARD 👁️                             ║");
+            System.out.println("╠══════════════════════════════════════════════════════════════════════════════╣");
+            System.out.println("║  🏁 1. View Upcoming Races                                                   ║");
+            System.out.println("║  🏆 2. View Race Results                                                     ║");
+            System.out.println("║  3. 🔍 Search Team By Username                                               ║");
+            System.out.println("║  🚪 3. Back to Main Menu                                                     ║");
+            System.out.println("╚══════════════════════════════════════════════════════════════════════════════╝");
+            System.out.print("🎯 Option: ");
             String input = sc.nextLine().trim();
-            System.out.println();
+            if (input.isEmpty()) {
+                System.out.println("⚠️ Option cannot be empty. Please choose 1, 2, or 3.");
+                continue;
+            }
 
             switch (input) {
                 case "1":
@@ -115,9 +123,19 @@ public class Main {
 
     private static boolean adminLogin(Scanner sc) {
         System.out.print("Enter admin username: ");
-        String adminUser = sc.nextLine();
+        String adminUser = sc.nextLine().trim();
+        if (adminUser.isEmpty()) {
+            System.out.println("Admin username cannot be empty.");
+            return false;
+        }
+
         System.out.print("Enter admin password: ");
-        String adminPass = sc.nextLine();
+        String adminPass = sc.nextLine().trim();
+        if (adminPass.isEmpty()) {
+            System.out.println("Admin password cannot be empty.");
+            return false;
+        }
+
         boolean isFound = UserDAO.authenticateAdmin(adminUser, adminPass);
         if (isFound) {
             System.out.println("Login successful.");
@@ -133,21 +151,28 @@ public class Main {
     private static void adminMenu(Scanner sc) {
         boolean running = true;
         while (running) {
-            System.out.println("\n" + "=".repeat(80));
-            System.out.println("🔐 ADMIN CONTROL PANEL 🔐");
-            System.out.println("=".repeat(80));
-            System.out.println("1. 🏟 Add New Track");
-            System.out.println("2. 🚗 Add New Car");
-            System.out.println("3. 👨‍💼 Add New Driver");
-            System.out.println("4. 💰 Add Sponsor");
-            System.out.println("5. 🏁 Schedule Race");
-            System.out.println("6. ❌ Cancel Race");
-            System.out.println("7. 📊 View Team Rankings");
-            System.out.println("8. 💼 Generate Sponsorship Offers");
-            System.out.println("9. 🚪 Logout");
-
-            System.out.print("Choose option: ");
-            String input = sc.nextLine();
+            System.out.println("\n" + "🔐".repeat(20));
+            System.out.println("          🔐 ADMIN CONTROL PANEL 🔐");
+            System.out.println("🔐".repeat(20));
+            System.out.println("╔══════════════════════════════════════════════════════════════════════════════╗");
+            System.out.println("║                           🎛️ ADMIN DASHBOARD 🎛️                              ║");
+            System.out.println("╠══════════════════════════════════════════════════════════════════════════════╣");
+            System.out.println("║  🏟️ 1. Add New Track                                                         ║");
+            System.out.println("║  🚗 2. Add New Car                                                           ║");
+            System.out.println("║  👨‍💼 3. Add New Driver                                                        ║");
+            System.out.println("║  💰 4. Add Sponsor                                                           ║");
+            System.out.println("║  🏁 5. Schedule Race                                                         ║");
+            System.out.println("║  ❌ 6. Cancel Race                                                           ║");
+            System.out.println("║  📊 7. View Team Rankings                                                    ║");
+            System.out.println("║  💼 8. Generate Sponsorship Offers                                           ║");
+            System.out.println("║  🚪 9. Logout                                                                ║");
+            System.out.println("╚══════════════════════════════════════════════════════════════════════════════╝");
+            System.out.print("🎯 Choose option: ");
+            String input = sc.nextLine().trim();
+            if (input.isEmpty()) {
+                System.out.println("⚠️ Option cannot be empty. Please choose 1-9.");
+                continue;
+            }
             switch (input) {
                 case "1": addNewTrack(sc); break;
                 case "2": addCar(sc); break;
@@ -171,7 +196,17 @@ public class Main {
         while (true) {
             System.out.print("Enter Length (km): ");
             String s = sc.nextLine();
-            try { lengthKm = Float.parseFloat(s); break; }
+            try { lengthKm = Float.parseFloat(s);
+                if (lengthKm <= 0) {
+                    System.out.println("Length must be positive.");
+                    continue;
+                }
+                if (lengthKm > 100) {
+                    System.out.println("Length cannot exceed 100 km.");
+                    continue;
+                }
+                break;
+            }
             catch (NumberFormatException e) { System.out.println("Invalid input."); }
         }
 
@@ -203,7 +238,10 @@ public class Main {
 
 
         System.out.print("Enter Track Image URL: ");
-        String url = sc.nextLine();
+        String url = sc.nextLine().trim();
+        if (url.isEmpty()) {
+            url = "N/A";
+        }
 
         if (TrackDAO.addTrack(name, location, lengthKm, url, difficulty, type)) System.out.println("Track added successfully.");
         else System.out.println("Failed to add track.");
@@ -249,6 +287,10 @@ public class Main {
         while (true) {
             System.out.print("Enter Race Date (YYYY-MM-DD, must be today or later): ");
             String dateInput = sc.nextLine().trim();
+            if (dateInput.isEmpty()) {
+                System.out.println("Date cannot be empty. Please enter a valid date.");
+                continue;
+            }
             try {
                 raceDate = LocalDate.parse(dateInput);
                 if (raceDate.isBefore(LocalDate.now())) {
@@ -263,6 +305,10 @@ public class Main {
         while (true) {
             System.out.print("Enter Race Time (HH:MM, 24-hour, must not be in the past if today): ");
             String timeInput = sc.nextLine().trim();
+            if (timeInput.isEmpty()) {
+                System.out.println("Time cannot be empty. Please enter a valid time.");
+                continue;
+            }
             try {
                 raceTime = LocalTime.parse(timeInput);
                 LocalDateTime raceDateTime = LocalDateTime.of(raceDate, raceTime);
@@ -319,6 +365,14 @@ public class Main {
         while (true) {
             System.out.print("Enter Car Name : ");
             name = sc.nextLine().trim();
+            if (name.isEmpty()) {
+                System.out.println("Car name cannot be empty.");
+                return;
+            }
+            if (name.length() < 2) {
+                System.out.println("Car name must be at least 2 characters long.");
+                return;
+            }
 
             // Regex explanation:
             // ^                 : start of string
@@ -336,7 +390,13 @@ public class Main {
         while (true) {
             System.out.print("Enter Price: ");
             String s = sc.nextLine();
-            try { price = Long.parseLong(s); break; }
+            try { price = Long.parseLong(s);
+                if (price <= 0) {
+                    System.out.println("Price must be positive.");
+                    continue;
+                }
+                break;
+            }
             catch (NumberFormatException e) { System.out.println("Invalid input."); }
         }
 
@@ -344,7 +404,11 @@ public class Main {
         while (true) {
             System.out.print("Enter Engine Power: ");
             String s = sc.nextLine();
-            try { enginePower = Integer.parseInt(s); break; }
+            try {
+                enginePower = Integer.parseInt(s);
+                if (enginePower <= 0) { System.out.println("Engine power must be positive."); continue; }
+                break;
+            }
             catch (NumberFormatException e) { System.out.println("Invalid input."); }
         }
 
@@ -352,7 +416,14 @@ public class Main {
         while (true) {
             System.out.print("Enter Max Speed (km/h): ");
             String s = sc.nextLine();
-            try { maxSpeed = Integer.parseInt(s); break; }
+            try {
+                maxSpeed = Integer.parseInt(s);
+                if (maxSpeed <= 0) {
+                    System.out.println("Max speed must be positive.");
+                    continue;
+                }
+                break;
+            }
             catch (NumberFormatException e) { System.out.println("Invalid input."); }
         }
 
@@ -362,6 +433,14 @@ public class Main {
 
     private static void addDriver(Scanner sc) {
         String name = getValidNameInput(sc, "Enter Driver Name: ");
+        if (name.isEmpty()) {
+            System.out.println("Driver name cannot be empty.");
+            return;
+        }
+        if (name.length() < 2) {
+            System.out.println("Driver name must be at least 2 characters long.");
+            return;
+        }
 
         int skillLevel = 0;
         while (true) {
@@ -376,12 +455,23 @@ public class Main {
         }
 
         String nationality = getValidNameInput(sc, "Enter Driver Nationality: ");
+        if (nationality.isEmpty()) {
+            System.out.println("Driver nationality cannot be empty.");
+            return;
+        }
+        if (nationality.length() < 2) {
+            System.out.println("Driver nationality must be at least 2 characters long.");
+            return;
+        }
 
         long rentalPrice = 0;
         while (true) {
             System.out.print("Enter Rental Price per Race: ");
             String s = sc.nextLine();
-            try { rentalPrice = Long.parseLong(s); break; }
+            try { rentalPrice = Long.parseLong(s);
+                if (rentalPrice <= 0) { System.out.println("Rental price must be positive."); continue; }
+                break;
+            }
             catch (NumberFormatException e) { System.out.println("Invalid input."); }
         }
 
@@ -393,14 +483,25 @@ public class Main {
 
     private static void addSponsor(Scanner sc) {
         String name = getValidNameInput(sc, "Enter Sponsor Name: ");
+        if (name.length() < 2) {
+            System.out.println("Sponsor name must be at least 2 characters long.");
+            return;
+        }
 
         String industry = getValidNameInput(sc, "Enter Industry: ");
+        if (industry.length() < 2) {
+            System.out.println("Sponsor name must be at least 2 characters long.");
+            return;
+        }
 
         long contractValue = 0;
         while (true) {
             System.out.print("Enter Contract Value: ");
             String s = sc.nextLine();
-            try { contractValue = Long.parseLong(s); break; }
+            try { contractValue = Long.parseLong(s);
+                if (contractValue <= 0) { System.out.println("Contract value must be positive."); continue; }
+                break;
+            }
             catch (NumberFormatException e) { System.out.println("Invalid input."); }
         }
 
@@ -408,7 +509,10 @@ public class Main {
         while (true) {
             System.out.print("Enter Contract duration (months): ");
             String s = sc.nextLine();
-            try { duration = Integer.parseInt(s); break; }
+            try { duration = Integer.parseInt(s);
+                if (duration <= 0) { System.out.println("Duration must be positive."); continue; }
+                break;
+            }
             catch (NumberFormatException e) { System.out.println("Invalid input."); }
         }
 
@@ -420,26 +524,38 @@ public class Main {
 
     private static void viewTeamRankings(Scanner sc) {
         System.out.println("\n" + "=".repeat(80));
-        System.out.println("🏁 TEAM RANKINGS & STATISTICS 🏁");
+        System.out.println("                        🏁 TEAM RANKINGS & STATISTICS 🏁");
         System.out.println("=".repeat(80));
 
-        String sortBy = "";
-        // Input validation loop for sorting criteria
+        System.out.println("📊 Sort by:");
+        System.out.println("╔══════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("║                              📊 SORTING OPTIONS 📊                          ║");
+        System.out.println("╠═════════════════════════════════════════════════════════════════════════════=╣");
+        System.out.println("║  1. 🏆 Points (highest first) - Championship ranking                        ║");
+        System.out.println("║  2. 🥇 Wins (most wins first) - Victory-based ranking                       ║");
+        System.out.println("╚═════════════════════════════════════════════════════════════════════════════=╝");
+
+        int sortChoice = 0;
         while (true) {
-            System.out.print("📊 Sort by (points/wins) or type 'back' to cancel: ");
-            sortBy = sc.nextLine().trim().toLowerCase();
-
-            if (sortBy.equals("back")) {
-                System.out.println("Returning to previous menu.");
-                return;
+            System.out.print("🎯 Choose option (1 or 2): ");
+            String sortInput = sc.nextLine().trim();
+            if (sortInput.isEmpty()) {
+                System.out.println("⚠️ Option cannot be empty. Please choose 1 or 2.");
+                continue;
             }
-
-            if (sortBy.equals("points") || sortBy.equals("wins")) {
-                break;
-            } else {
-                System.out.println("⚠ Invalid Input. Please enter 'points', 'wins', or 'back'.");
+            try {
+                sortChoice = Integer.parseInt(sortInput);
+                if (sortChoice == 1 || sortChoice == 2) {
+                    break;
+                } else {
+                    System.out.println("⚠️ Invalid option. Please choose 1 or 2.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("⚠️ Invalid input. Please enter 1 or 2.");
             }
         }
+
+        String sortBy = (sortChoice == 1) ? "points" : "wins";
 
         List<Standing> standings = StandingDAO.getSeasonStandings(sortBy);
 
@@ -613,10 +729,22 @@ public class Main {
         }
     }
 
+
     private static User userLogin(Scanner sc) {
-        String username = getValidNameInput(sc, "Enter Username : ");
+        System.out.print("Enter username: ");
+        String username = sc.nextLine().trim();
+        if (username.isEmpty()) {
+            System.out.println("Username cannot be empty.");
+            return null;
+        }
+
         System.out.print("Enter password: ");
-        String password = sc.nextLine();
+        String password = sc.nextLine().trim();
+        if (password.isEmpty()) {
+            System.out.println("Password cannot be empty.");
+            return null;
+        }
+
         User u = UserDAO.authenticateUser(username, password);
         if (u != null) System.out.println("Login successful.");
         else System.out.println("Login failed.");
@@ -631,69 +759,83 @@ public class Main {
         // Full Name Input
         String fullName;
         while (true) {
-            System.out.print("Enter Full Name (first and last name, or type 'back' to cancel): ");
-            fullName = sc.nextLine().trim();
-            if (fullName.equalsIgnoreCase("back")) return;
-            // Check if fullName contains at least two words (letters only)
-            if (!fullName.matches("^([A-Za-z]+\\s)+[A-Za-z]+$")) {
-                System.out.println("⚠ Please enter full name with at least first and last name (letters only).");
-                continue;
+            try {
+                System.out.print("Enter Full Name (First and Surname) or 'back' to cancel: ");
+                fullName = sc.nextLine().trim();
+                if (fullName.equalsIgnoreCase("back")) return;
+                if (fullName.isEmpty()) throw new IllegalArgumentException("Name cannot be empty.");
+                // Require at least two words (first + surname), letters only
+                if (!fullName.matches("[A-Za-z]+(\\s+[A-Za-z]+)+"))
+                    throw new IllegalArgumentException("Please enter first name and surname (letters only).");
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("⚠ " + e.getMessage());
             }
-            break;
         }
 
         // Username Input
         String userName;
         while (true) {
-            System.out.print("Enter Username (no numbers allowed, or 'back' to cancel): ");
-            userName = sc.nextLine().trim();
-            if (userName.equalsIgnoreCase("back")) return;
-            if (userName.matches(".*\\d.*")) {
-                System.out.println("⚠ Username cannot contain numbers.");
-                continue;
+            try {
+                System.out.print("Enter Username (letters only, or 'back' to cancel): ");
+                userName = sc.nextLine().trim();
+                if (userName.equalsIgnoreCase("back")) return;
+                if (userName.isEmpty())
+                    throw new IllegalArgumentException("Username cannot be empty.");
+                if (userName.matches(".*\\d.*"))
+                    throw new IllegalArgumentException("Username cannot contain numbers.");
+                if (UserDAO.getUserByUsername(userName) != null)
+                    throw new IllegalArgumentException("Username already taken.");
+
+                // Protect reserved admin username in DB
+                String dbRole = UserDAO.getRoleFromDatabase(userName);
+                if (dbRole != null && dbRole.equalsIgnoreCase("admin")) {
+                    throw new IllegalArgumentException("This username is reserved for admin and cannot be used.");
+                }
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("⚠ " + e.getMessage());
             }
-            if (UserDAO.getUserByUsername(userName) != null) {
-                System.out.println("⚠ Username already taken.");
-                continue;
-            }
-            String dbRole = UserDAO.getRoleFromDatabase(userName);
-            if (dbRole != null && dbRole.equalsIgnoreCase("admin")) {
-                System.out.println("⚠ This username is reserved for admin and cannot be used.");
-                continue;
-            }
-            break;
         }
 
         // Email Input
         String emailID;
         while (true) {
-            System.out.print("Enter Email ID (or 'back' to cancel): ");
-            emailID = sc.nextLine().trim();
-            if (emailID.equalsIgnoreCase("back")) return;
-            if (!emailID.matches("^[A-Za-z0-9+_.-]+@(.+)$") || !emailID.toLowerCase().endsWith("@gmail.com")) {
-                System.out.println("⚠ Invalid email format.");
-                continue;
+            try {
+                System.out.print("Enter Email ID (or 'back' to cancel): ");
+                emailID = sc.nextLine().trim();
+                if (emailID.equalsIgnoreCase("back")) return;
+                if (!emailID.matches("^[A-Za-z0-9+_.-]+@(.+)$") || !emailID.toLowerCase().endsWith("@gmail.com")) {
+                    System.out.println("⚠ Invalid email format.");
+                    continue;
+                }
+                if (UserDAO.emailExists(emailID)) {
+                    System.out.println("⚠ EmailID already taken.");
+                    continue;
+                }
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("⚠ " + e.getMessage());
             }
-            if (UserDAO.emailExists(emailID)) {
-                System.out.println("⚠ EmailID already taken.");
-                continue;
-            }
-            break;
         }
 
         // Password Input
         String password;
         while (true) {
-            System.out.print("Enter Password (min 8 chars, number, symbol, or 'back' to cancel): ");
-            password = sc.nextLine();
-            if (password.equalsIgnoreCase("back")) return;
-            boolean hasNumber = password.matches(".*\\d.*");
-            boolean hasSymbol = password.matches(".*[!@#$%^&*()].*");
-            if (!(password.length() >= 8 && hasNumber && hasSymbol)) {
-                System.out.println("⚠ Password must be at least 8 characters, contain a number and a symbol.");
-                continue;
+            try {
+                System.out.print("Enter Password (min 8 chars, number, symbol, or 'back' to cancel): ");
+                password = sc.nextLine();
+                if (password.equalsIgnoreCase("back")) return;
+
+                boolean hasNumber = password.matches(".*\\d.*");
+                boolean hasSymbol = password.matches(".*[!@#$%^&*()].*");
+
+                if (!(password.length() >= 8 && hasNumber && hasSymbol))
+                    throw new IllegalArgumentException("Password must be at least 8 characters, contain a number and a symbol.");
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("⚠ " + e.getMessage());
             }
-            break;
         }
 
         // Role Input
@@ -737,8 +879,29 @@ public class Main {
         }
 
         if(isAdminSuccess) {
+            String newAccessKey;
+            while (true) {
+                try {
+                    System.out.print("Enter New Access Key for this admin (or 'back' to cancel): ");
+                    newAccessKey = sc.nextLine().trim();
+                    if (newAccessKey.equalsIgnoreCase("back")) return;
+                    if (newAccessKey.isEmpty()) {
+                        throw new IllegalArgumentException("Access key cannot be empty.");
+                    }
+                    if (newAccessKey.length() < 6) {
+                        throw new IllegalArgumentException("Access key must be at least 6 characters long.");
+                    }
+                    if (UserDAO.isValidAdminAccessKey(newAccessKey)) {
+                        throw new IllegalArgumentException("Access key already exists. Choose a unique one.");
+                    }
+                    break;
+                } catch (IllegalArgumentException e) {
+                    System.out.println("⚠ " + e.getMessage());
+                }
+            }
+
             User newAdmin = new User(fullName, userName, emailID, password, role);
-            boolean isCreatedAdmin = UserDAO.registerAdmin(newAdmin, accessKey);
+            boolean isCreatedAdmin = UserDAO.registerAdmin(newAdmin, newAccessKey);
             if (isCreatedAdmin) {
                 System.out.println("Account created successfully.");
             } else {
@@ -752,25 +915,30 @@ public class Main {
 
         String teamName;
         while (true) {
-            System.out.print("Enter Team Name (or 'back' to cancel): ");
-            teamName = sc.nextLine().trim();
-            if (teamName.equalsIgnoreCase("back")) return;
-            if (teamName.isEmpty()) {
-                System.out.println("⚠ Team name cannot be empty.");
-                continue;
+            try {
+                System.out.print("Enter Team Name (or 'back' to cancel): ");
+                teamName = sc.nextLine().trim();
+                if (teamName.equalsIgnoreCase("back")) return;
+                if (teamName.isEmpty()) throw new IllegalArgumentException("Team name cannot be empty.");
+                if (teamName.length() < 2) throw new IllegalArgumentException("Team name must be at least 2 characters long.");
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("⚠ " + e.getMessage());
             }
-            break;
         }
 
         String teamOrigin;
         while (true) {
-            teamOrigin = getValidNameInput(sc, "Enter Team Origin (or 'back' to cancel): ");
-            if (teamOrigin.equalsIgnoreCase("back")) return;
-            if (teamOrigin.isEmpty()) {
-                System.out.println("⚠ Team origin cannot be empty.");
-                continue;
+            try {
+                System.out.print("Enter Team Origin (or 'back' to cancel): ");
+                teamOrigin = sc.nextLine().trim();
+                if (teamOrigin.equalsIgnoreCase("back")) return;
+                if (teamOrigin.isEmpty()) throw new IllegalArgumentException("Team origin cannot be empty.");
+                if (teamOrigin.length() < 2) throw new IllegalArgumentException("Team origin must be at least 2 characters long.");
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("⚠ " + e.getMessage());
             }
-            break;
         }
 
         // Create User Object
@@ -790,53 +958,69 @@ public class Main {
     private static void userMenu(Scanner sc, User user) {
         boolean loggedIn = true;
         while (loggedIn) {
-            System.out.println("\n" + "=".repeat(50));
-            System.out.println("👤 USER DASHBOARD 👤");
-            System.out.println("=".repeat(50));
-            System.out.println("01. 📊 View Team Statistics");
-            System.out.println("02. 🚗 Buy Car");
-            System.out.println("03. 👨‍💼 Rent Driver");
-            System.out.println("04. 🏁 View Upcoming Races");
-            System.out.println("05. 📝 Register Team for Upcoming Race");
-            System.out.println("06. 🏆 View Race Results");
-            System.out.println("07. 💼 View Sponsorship Requests");
-            System.out.println("08. 💰 View My Sponsors");
-            System.out.println("09. 🔍 Search Team by Username");
-            System.out.println("10. 👨‍💼 View Driver Statistics");
-            System.out.println("11. 🚗 View Car Statistics");
-            System.out.println("12. 📊 View Team Standings");
-            System.out.println("13. 🚪 Logout");
+            System.out.println("\n" + "=".repeat(80));
+            System.out.println("                              👤 USER DASHBOARD 👤");
+            System.out.println("=".repeat(80));
+            System.out.println("╔══════════════════════════════════════════════════════════════════════════════╗");
+            System.out.println("║                           🏎️ TEAM DASHBOARD 🏎️                               ║");
+            System.out.println("╠══════════════════════════════════════════════════════════════════════════════╣");
+            System.out.println("║  📊 01. View Team Statistics                                                 ║");
+            System.out.println("║  🚗 02. Buy Car                                                              ║");
+            System.out.println("║  👨‍💼 03. Purchase Driver                                                      ║");
+            System.out.println("║  🏁 04. View Upcoming Races                                                  ║");
+            System.out.println("║  📝 05. Register Team for Upcoming Race                                      ║");
+            System.out.println("║  🏆 06. View Race Results                                                    ║");
+            System.out.println("║  💼 07. View Sponsorship Requests                                            ║");
+            System.out.println("║  💰 08. View My Sponsors                                                     ║");
+            System.out.println("║  🔍 09. Search Team by Username                                              ║");
+            System.out.println("║  👨‍💼 10. View Driver Statistics                                               ║");
+            System.out.println("║  🚗 11. View Car Statistics                                                  ║");
+            System.out.println("║  📊 12. View Team Standings                                                  ║");
+            System.out.println("║  🚪 13. Logout                                                               ║");
+            System.out.println("╚══════════════════════════════════════════════════════════════════════════════╝");
 
-            System.out.print("Option: ");
-            String input = sc.nextLine();
-            switch (input) {
-                case "1":
+            System.out.print("🎯 Option: ");
+            String input = sc.nextLine().trim();
+
+            int choice;
+            try {
+                choice = Integer.parseInt(input.replaceFirst("^0+(?!$)", ""));
+            } catch (NumberFormatException e) {
+                System.out.println("⚠️ Invalid option.");
+                continue;
+            }
+            switch (choice) {
+                case 1:
                     viewMyTeamStatistics(user.teamId);
                     break;
-                case "2":
+                case 2:
                     buyCar(sc, user);
                     break;
-                case "3":
+                case 3:
                     rentDriver(sc, user);
                     break;
-                case "4":
+                case 4:
                     viewUpcomingRaces();
                     break;
-                case "5":
+                case 5:
                     registerTeamForRace(sc, user);
                     break;
-                case "6":
+                case 6:
                     viewRaceResults();
                     break;
-                case "7":
+                case 7:
                     handleSponsorshipRequests(sc, user);
                     break;
-                case "8":
+                case 8:
                     viewSponsors(sc, user);
                     break;
-                case "9":
+                case 9:
                     System.out.print("🔍 Enter username to search: ");
-                    String username = sc.nextLine();
+                    String username = sc.nextLine().trim();
+                    if (username.isEmpty()) {
+                        System.out.println("Username cannot be empty.");
+                        break;
+                    }
                     User searchedUser = UserDAO.getUserByUsername(username);
                     if (searchedUser == null || searchedUser.teamId == 0) {
                         System.out.println("❌ User or team not found.");
@@ -844,16 +1028,16 @@ public class Main {
                         displayTeamStatistics(searchedUser.teamId);
                     }
                     break;
-                case "10":
+                case 10:
                     viewDriverStatistics(sc, user.teamId);
                     break;
-                case "11":
+                case 11:
                     viewCarStatistics(sc, user.teamId);
                     break;
-                case "12" :
+                case 12 :
                     viewTeamRankings(sc);
                     break;
-                case "13":
+                case 13:
                     loggedIn = false;
                     System.out.println("👋 Logged out.");
                     break;
@@ -903,6 +1087,10 @@ public class Main {
         }
 
         Team team = TeamDAO.getTeamById(user.teamId);
+        if (team == null) {
+            System.out.println("Team not found. Cannot proceed with purchase.");
+            return;
+        }
         if (team.budget < car.price) {
             System.out.println("⚠ Not enough budget to buy this car. Your budget: " + team.budget + ", Car price: " + car.price);
             return;
@@ -956,13 +1144,16 @@ public class Main {
         }
 
         Team team = TeamDAO.getTeamById(user.teamId);
+        if (team == null) {
+            System.out.println("Team not found. Cannot proceed with rent.");
+            return;
+        }
         if (team.budget < driver.rentalPrice) {
             System.out.println("⚠ Not enough budget to rent this driver. Your budget: " + team.budget + ", Rental price: " + driver.rentalPrice);
             return;
         }
 
         if (DriverDAO.assignDriverToTeam(driverId, team.teamId, driver.rentalPrice)) {
-            TeamDAO.updateBudget(team.teamId, team.budget - driver.rentalPrice);
             System.out.printf("✅ Driver '%s' rented successfully. Remaining budget: %,d%n", driver.driverName, team.budget - driver.rentalPrice);
         } else {
             System.out.println("⚠ Failed to rent driver. Please try again later.");
@@ -990,9 +1181,7 @@ public class Main {
         System.out.printf("%-8s %-10s %-12s %-10s %-6s%n", "Race ID", "Track ID", "Date", "Time", "Laps");
         System.out.println("--------------------------------------------------------");
         for (var race : bst.inOrderValues()) {
-            System.out.printf("%-8d %-10d %-12s %-10s %-6d%n",
-                    race.getRaceId(), race.getTrackId(), race.getRaceDate(),
-                    race.getRaceTime(), race.getLaps());
+            System.out.printf("%-8d %-10d %-12s %-10s %-6d%n", race.getRaceId(), race.getTrackId(), race.getRaceDate(), race.getRaceTime(), race.getLaps());
         }
         return true;
     }
@@ -1478,9 +1667,11 @@ public class Main {
 
                 // Performance analysis
                 if (rank == 1) {
-                    System.out.println("   🎯 Status: 🥇 CHAMPIONSHIP LEADER!");
-                } else if (rank <= 3) {
-                    System.out.println("   🎯 Status: 🏆 PODIUM CONTENDER");
+                    System.out.println("   🎯 Status: 🥇 CHAMPION");
+                } else if (rank == 2) {
+                    System.out.println("   🎯 Status: \uD83E\uDD48 RUNNER-UP");
+                } else if (rank == 3) {
+                    System.out.println("   🎯 Status: \uD83E\uDD49 THIRD PLACE");
                 } else if (rank <= 5) {
                     System.out.println("   🎯 Status: 📈 TOP 5 TEAM");
                 } else if (rank <= 10) {
