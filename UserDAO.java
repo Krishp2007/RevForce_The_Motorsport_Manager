@@ -44,34 +44,7 @@ public class UserDAO {
         return false;
     }
 
-    public static String generateNewAdminAccessKey() {
-        String prefix = "ADM-";
-        String sql = "SELECT MAX(access_key) FROM users WHERE role = 'admin' AND access_key LIKE ?";
-
-        try (Connection conn = DBManager.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            ps.setString(1, prefix + "%");
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    String accessKey = rs.getString(1);
-                    if (accessKey != null) {
-                        String numberPart = accessKey.replace(prefix, "");
-                        int num = Integer.parseInt(numberPart);
-                        return prefix + String.format("%03d", num + 1);
-                    }
-                }
-            }
-        } catch (SQLException | NumberFormatException e) {
-            e.printStackTrace();
-        }
-        // fallback if no existing or parse error
-        return prefix + "001";
-    }
-
-    public static boolean registerAdmin(User user, String AccessKey) {
-        // Generate new unique referral number for this admin
-        String newAccessKey = generateNewAdminAccessKey();
+    public static boolean registerAdmin(User user, String newAccessKey) {
 
         String sqlUser = "INSERT INTO users (first_name, last_name, username, email, password, role, access_key) VALUES (?, ?, ?, ?, ?, 'admin', ?)";
 
